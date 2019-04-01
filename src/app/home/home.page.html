@@ -7,11 +7,37 @@
 </ion-header>
 
 <ion-content>
+
   <ion-list>
-    <ion-item *ngFor="let todo of todoList">
-      <ion-checkbox [(ngModel)]="todo.done"></ion-checkbox>
-      <ion-label>{{todo.taskName}}</ion-label>
-    </ion-item>
+
+    <ion-item-sliding *ngFor="let todo of todoList; let pos = index">
+
+      <ion-item-options side="end">
+        <ion-item-option>
+          <ion-button color="success" (click)=showUpdateForm(pos)>
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item-options side="start">
+        <ion-item-option>
+          <ion-button color="danger" (click)=delete(pos)>
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item>
+        <ion-checkbox [(ngModel)]="todo.done"></ion-checkbox>
+        <ion-label>{{todo.taskName}}</ion-label>
+      </ion-item>
+    </ion-item-sliding>
+
+
+
+
+
   </ion-list>
 </ion-content>
 
