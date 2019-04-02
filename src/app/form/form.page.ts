@@ -10,6 +10,7 @@ import { Storage } from '@ionic/storage';
 })
 export class FormPage implements OnInit {
   private todoAdd;
+  private pos;
   //
   constructor(
     private todoService: TodoService,
@@ -24,10 +25,10 @@ export class FormPage implements OnInit {
 
   //A l'initialisation on instancie un nouvel objet todo dans la variable todoAdd
   ngOnInit() {
-    let pos = this.activeRoute.snapshot.paramMap.get("pos");
-    if (pos) {
+    this.pos = this.activeRoute.snapshot.paramMap.get("pos");
+    if (this.pos) {
       this.storage.get("todo-List").then((data) => {
-        this.todoAdd = data[pos];
+        this.todoAdd = data[this.pos];
       }
       )
     }
@@ -45,10 +46,17 @@ export class FormPage implements OnInit {
     if (this.todoAdd.taskName) {
       //récupération des données via storage
       this.storage.get("todo-List").then((data) => {
-
         let todoList = data || [];
-        todoList.push(this.todoAdd);
+
+        todoList[this.pos] = this.todoAdd;
+        //Ajout ou modification en fonction de la valeur de pos
+        if (this.pos) {
+        } else {
+          todoList.push(this.todoAdd);
+        }
+
         this.storage.set("todo-List", todoList);
+
         this.router.navigateByUrl("/home");
       })
     };
