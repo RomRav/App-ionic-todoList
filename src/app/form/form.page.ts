@@ -9,7 +9,7 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./form.page.scss'],
 })
 export class FormPage implements OnInit {
-  private todoAdd;
+  public todoAdd;
   private pos;
   //
   constructor(
@@ -42,7 +42,7 @@ export class FormPage implements OnInit {
   }
 
 
-  private recTodo() {
+  public recTodo() {
     if (this.todoAdd.taskName) {
       //récupération des données via storage
       this.storage.get("todo-List").then((data) => {

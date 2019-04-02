@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class HomePage {
 
 
-  private todoList;
+  public todoList;
   //Dans le constructor passe en paramétre les class TodoService et Storage pour la persistance 
   constructor(private todoService: TodoService, private storage: Storage, private router: Router) {
   }
