@@ -5,13 +5,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label position="floating">Tâches</ion-label>
-    <ion-input type="text" [(ngModel)]="todoAdd.taskName"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-button expand="full">Prendre une photo</ion-button>
-  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Tâches</ion-label>
+      <ion-input type="text" [(ngModel)]="todoAdd.taskName"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button size="large" expand="full" (click)="takePicture()">
+    <ion-icon slot="icon-only" name='camera'></ion-icon> Photo
+  </ion-button>
+  <div *ngIf="pictureData">
+    <ion-img src="data:image/jpeg;base64," {{pictureData}}> </ion-img>
+  </div>
 </ion-content>
 
 <ion-footer>
